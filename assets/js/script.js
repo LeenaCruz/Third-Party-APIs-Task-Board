@@ -21,34 +21,6 @@ function generateTaskId() {
 // Todo: create a function to create a task card
 function createTaskCard(task) {
 
-    // for (let i = 0; i < taskList.length; i++) {
-
-    //     const todoEl = $("#to-do");
-    //     const taskCard = $("<div>");
-    //     const cardBody = $("<div>")
-    //     const taskTitleEl = $("<h2>");
-    //     const taskDateEL = $("<p>");
-    //     const taskDescEL = $("<p>");
-
-
-    //     taskTitleEl.text(taskList[i].taskName);
-    //     taskDateEL.text(taskList[i].taskDate);
-    //     taskDescEL.text(taskList[i].taskDescription);
-
-    //     todoEl.append(taskCard);
-    //     taskCard.append(cardBody);
-    //     taskCard.append(taskTitleEl);
-    //     taskCard.append(taskDateEL);
-    //     taskCard.append(taskDescEL);
-
-    //     taskCard.addClass('card');
-    //     cardBody.addClass('card-body');
-    //     taskTitleEl.addClass('card-title');
-    //     taskDateEL.addClass('card-subtitle');
-    //     taskDescEL.addClass('card-text');
-    // }
-    // let taskList = JSON.parse(localStorage.getItem("tasks"));
-
     const todoEl = $("#to-do");
     const taskCard = $("<div>");
     const cardBody = $("<div>")
@@ -72,11 +44,49 @@ function createTaskCard(task) {
     taskTitleEl.addClass('card-title');
     taskDateEL.addClass('card-subtitle');
     taskDescEL.addClass('card-text');
+ 
 
 }
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
 
+   let taskList = JSON.parse(localStorage.getItem("tasks"));
+     for (let i = 0; i < taskList.length; i++) {
+
+        const todoEl = $("#to-do");
+        const taskCard = $("<div>");
+        const cardBody = $("<div>")
+        const taskTitleEl = $("<h2>");
+        const taskDateEL = $("<p>");
+        const taskDescEL = $("<p>");
+
+
+        taskTitleEl.text(taskList[i].taskName);
+        taskDateEL.text(taskList[i].taskDate);
+        taskDescEL.text(taskList[i].taskDescription);
+
+        todoEl.append(taskCard);
+        taskCard.append(cardBody);
+        taskCard.append(taskTitleEl);
+        taskCard.append(taskDateEL);
+        taskCard.append(taskDescEL);
+
+        taskCard.addClass('card');
+        cardBody.addClass('card-body');
+        taskTitleEl.addClass('card-title');
+        taskDateEL.addClass('card-subtitle');
+        taskDescEL.addClass('card-text');
+       
+
+        $( function() {
+            $( '.card' ).draggable();
+          } );
+    
+    
+    }
+   
+  
+ 
 }
 
 // Todo: create a function to handle adding a new task
