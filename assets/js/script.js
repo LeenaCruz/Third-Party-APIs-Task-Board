@@ -32,18 +32,19 @@ function handleAddTask(event) {
 
     // event.preventDefault();
     const task = {
-        taskName: taskTitle,
-        taskDate: taskDate,
-        taskDescription: taskDescription,
+        taskName: taskTitle.val(),
+        taskDate: taskDate.val(),
+        taskDescription: taskDescription.val(),
     };
 
- taskList =  JSON.parse(localStorage.getItem("tasks")) || [];
+//  taskList =  JSON.parse(localStorage.getItem("tasks")) || [];
 
     taskList.push(task);
 
     localStorage.setItem("tasks", JSON.stringify(taskList));
 
     console.log(taskList);
+
 }
 
 // today = dayjs(); taskDate    today -task date  <=3 deadline
