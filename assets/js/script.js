@@ -21,28 +21,57 @@ function generateTaskId() {
 // Todo: create a function to create a task card
 function createTaskCard(task) {
 
-    for (let i = 0; i < taskList.length; i++) {
+    // for (let i = 0; i < taskList.length; i++) {
 
-        const todoEl = $("#to-do")
-        const taskCard = $("<div>");
-        const taskTitleEl = $("<h2>");
-        const taskDateEL = $("<p>");
-        const taskDescEL = $("<p>");
-
-
-        taskTitleEl.text(taskList[i].taskName);
-        taskDateEL.text(taskList[i].taskDate);
-        taskDescEL.text(taskList[i].taskDescription);
-
-        todoEl.append(taskCard);
-        taskCard.append(taskTitleEl);
-        taskCard.append(taskDateEL);
-        taskCard.append(taskDescEL);
-
-        taskCard.addClass('card');
-    }
+    //     const todoEl = $("#to-do");
+    //     const taskCard = $("<div>");
+    //     const cardBody = $("<div>")
+    //     const taskTitleEl = $("<h2>");
+    //     const taskDateEL = $("<p>");
+    //     const taskDescEL = $("<p>");
 
 
+    //     taskTitleEl.text(taskList[i].taskName);
+    //     taskDateEL.text(taskList[i].taskDate);
+    //     taskDescEL.text(taskList[i].taskDescription);
+
+    //     todoEl.append(taskCard);
+    //     taskCard.append(cardBody);
+    //     taskCard.append(taskTitleEl);
+    //     taskCard.append(taskDateEL);
+    //     taskCard.append(taskDescEL);
+
+    //     taskCard.addClass('card');
+    //     cardBody.addClass('card-body');
+    //     taskTitleEl.addClass('card-title');
+    //     taskDateEL.addClass('card-subtitle');
+    //     taskDescEL.addClass('card-text');
+    // }
+    // let taskList = JSON.parse(localStorage.getItem("tasks"));
+
+    const todoEl = $("#to-do");
+    const taskCard = $("<div>");
+    const cardBody = $("<div>")
+    const taskTitleEl = $("<h2>");
+    const taskDateEL = $("<p>");
+    const taskDescEL = $("<p>");
+
+    let i = taskList.length-1;
+    taskTitleEl.text(taskList[i].taskName);
+    taskDateEL.text(taskList[i].taskDate);
+    taskDescEL.text(taskList[i].taskDescription);
+
+    todoEl.append(taskCard);
+    // taskCard.append(cardBody);
+    taskCard.append(taskTitleEl);
+    taskCard.append(taskDateEL);
+    taskCard.append(taskDescEL);
+
+    taskCard.addClass('card');
+    // cardBody.addClass('card-body');
+    taskTitleEl.addClass('card-title');
+    taskDateEL.addClass('card-subtitle');
+    taskDescEL.addClass('card-text');
 
 }
 // Todo: create a function to render the task list and make cards draggable
@@ -96,6 +125,7 @@ $(document).ready(function () {
 
     $("#save-task").click(function () {
         handleAddTask();
+       
     });
 
 
