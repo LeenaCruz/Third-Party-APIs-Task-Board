@@ -8,9 +8,15 @@ body {
 }
 
 .task-card {
-  margin: 0 auto;
+  /* margin: 0 auto; */
+
 }
 
 .task-card:hover {
   cursor: grab;
 }
+
+.droppable {
+  
+}
+

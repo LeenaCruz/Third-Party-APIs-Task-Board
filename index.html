@@ -16,9 +16,10 @@
   <link rel="stylesheet" href="./assets/css/style.css" />
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
   <title>Task Board</title>
-  <style>
-    #draggable { width: 150px; height: 150px; padding: 0.5em; }
-    </style>
+  <!-- <style>
+    #task-card { width: 150px; height: 150px; padding: 0.5em; }
+    #droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+    </style> -->
 </head>
 
 <body>
@@ -49,7 +50,7 @@
           <div class="card-header bg-white">
             <h2 class="card-title mb-1">In Progress</h2>
           </div>
-          <div class="card-body bg-light">
+          <div  id="progress"   class="card-body bg-light">
             <div id="in-progress-cards"></div>
           </div>
         </div>
