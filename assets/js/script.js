@@ -6,6 +6,7 @@ const addTask = $('#save-task');
 const taskTitle = $("#task-title");
 const taskDate = $("#date-picker");
 const taskDescription = $('#task-description');
+
 // const taskTitle = document.getElementById('task-title');
 // const taskDate = document.getElementById('date-picker');
 // const taskDescription = document.getElementById('task-description');
@@ -14,11 +15,34 @@ const taskDescription = $('#task-description');
 
 // Todo: create a function to generate a unique task id
 function generateTaskId() {
-
+    //randomize y cuantos caracteres
 }
 
 // Todo: create a function to create a task card
 function createTaskCard(task) {
+
+    for (let i = 0; i < taskList.length; i++) {
+
+        const todoEl = $("#to-do")
+        const taskCard = $("<div>");
+        const taskTitleEl = $("<h2>");
+        const taskDateEL = $("<p>");
+        const taskDescEL = $("<p>");
+
+
+        taskTitleEl.text(taskList[i].taskName);
+        taskDateEL.text(taskList[i].taskDate);
+        taskDescEL.text(taskList[i].taskDescription);
+
+        todoEl.append(taskCard);
+        taskCard.append(taskTitleEl);
+        taskCard.append(taskDateEL);
+        taskCard.append(taskDescEL);
+
+        taskCard.addClass('card');
+    }
+
+
 
 }
 // Todo: create a function to render the task list and make cards draggable
@@ -37,7 +61,7 @@ function handleAddTask(event) {
         taskDescription: taskDescription.val(),
     };
 
-//  taskList =  JSON.parse(localStorage.getItem("tasks")) || [];
+    // taskList =  JSON.parse(localStorage.getItem("tasks")) || [];
 
     taskList.push(task);
 
@@ -45,6 +69,7 @@ function handleAddTask(event) {
 
     console.log(taskList);
 
+    createTaskCard();
 }
 
 // today = dayjs(); taskDate    today -task date  <=3 deadline
@@ -67,9 +92,9 @@ $(document).ready(function () {
         $("#date-picker").datepicker();
     });
 
-    // renderTaskList();
+    renderTaskList();
 
-    $("#save-task").click(function() {
+    $("#save-task").click(function () {
         handleAddTask();
     });
 
