@@ -14,9 +14,13 @@ body {
 
 .task-card:hover {
   cursor: grab;
+  
 }
 
 .droppable {
   
 }
 
+.draggable {
+  
+}

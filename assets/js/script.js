@@ -21,6 +21,7 @@ function generateTaskId() {
 // Todo: create a function to create a task card
 function createTaskCard(task) {
 
+
     const todoEl = $("#to-do");
     const taskCard = $("<div>");
     const cardBody = $("<div>")
@@ -59,7 +60,7 @@ function renderTaskList() {
         const taskTitleEl = $("<h2>");
         const taskDateEL = $("<p>");
         const taskDescEL = $("<p>");
-const inprogressEl = $("#in-progrss");
+        const inprogressEl = $("#in-progress");
 
         taskTitleEl.text(taskList[i].taskName);
         taskDateEL.text(taskList[i].taskDate);
@@ -72,7 +73,7 @@ const inprogressEl = $("#in-progrss");
         taskCard.append(taskDescEL);
 
         // inprogressEl.addClass('droppable');
-        taskCard.addClass('card task-card');
+        taskCard.addClass('card task-card draggable');
         cardBody.addClass('card-body');
         taskTitleEl.addClass('card-title');
         taskDateEL.addClass('card-subtitle');
@@ -80,8 +81,9 @@ const inprogressEl = $("#in-progrss");
 
 
         $(function () {
-            $('.task-card').draggable();
-            $(".card-body").droppable({
+            $('.draggable').draggable();
+
+            $('.droppable').droppable({
                 drop: function (event, ui) {
                     $(this)
                         .addClass("task-card")
@@ -101,12 +103,30 @@ const inprogressEl = $("#in-progrss");
 // Todo: create a function to handle adding a new task
 
 function handleAddTask(event) {
+    const today = dayjs();
+    // Give credit to Xpert learning for dayJS object diff 
+    const newDate = dayjs(taskDate.val());
+    const dueDate = newDate.diff(today, 'day');
+    console.log(newDate.format('MM/DD/YYYY'));
+    console.log(dueDate);
+    // console.log(dueDate);
+    let taskStatus = "";
+    if (dueDate <= 0) {
+        taskStatus = "overdue";
+
+    }
+    else if (dueDate <3) {
+        taskStatus = "deadline";
+    } else {
+        taskStatus = "onTime";
+    }
 
     // event.preventDefault();
     const task = {
         taskName: taskTitle.val(),
         taskDate: taskDate.val(),
         taskDescription: taskDescription.val(),
+        taskStatus: taskStatus,
     };
 
     // taskList =  JSON.parse(localStorage.getItem("tasks")) || [];
@@ -125,16 +145,17 @@ function handleAddTask(event) {
 // Todo: create a function to handle deleting a task
 function handleDeleteTask(event) {
 
-//grab id from delete button
-//compare id to all id values from array
-//delete from array when id matches
+    //grab id from delete button
+    //compare id to all id values from array
+    //delete from array when id matches
 
 }
 
 // Todo: create a function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {
-// change status of cards
-//save
+    // change status of cards
+    //save
+
 }
 
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
@@ -145,7 +166,7 @@ $(document).ready(function () {
         $("#date-picker").datepicker();
     });
 
-   
+
 
     $("#save-task").click(function () {
         handleAddTask();
