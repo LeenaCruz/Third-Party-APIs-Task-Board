@@ -9,7 +9,7 @@ body {
 
 .task-card {
   /* margin: 0 auto; */
-
+display: flex;
 }
 
 .task-card:hover {
@@ -38,4 +38,12 @@ body {
 .onTime 
 {
   background-color: white;
+}
+
+.button 
+{
+  width: 100px;
+display: block;
+align-self: center;
+margin-bottom: 20px;
 }

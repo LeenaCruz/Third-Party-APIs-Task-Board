@@ -58,27 +58,31 @@ function renderTaskList() {
         const taskCard = $("<div>");
         const cardBody = $("<div>")
         const taskTitleEl = $("<h2>");
-        const taskDateEL = $("<p>");
-        const taskDescEL = $("<p>");
-        const inprogressEl = $("#in-progress");
+        const taskDateEl = $("<p>");
+        const taskDescEl = $("<p>");
+        const deleteEl = $("<button>");
 
         taskTitleEl.text(taskList[i].taskName);
-        taskDateEL.text(taskList[i].taskDate);
-        taskDescEL.text(taskList[i].taskDescription);
+        taskDateEl.text(taskList[i].taskDate);
+        taskDescEl.text(taskList[i].taskDescription);
+        deleteEl.text("Delete");
 
         todoEl.append(taskCard);
         taskCard.append(cardBody);
         taskCard.append(taskTitleEl);
-        taskCard.append(taskDateEL);
-        taskCard.append(taskDescEL);
+        taskCard.append(taskDateEl);
+        taskCard.append(taskDescEl);
+        taskCard.append(deleteEl);
 
         // inprogressEl.addClass('droppable');
         taskCard.addClass('card task-card draggable');
         cardBody.addClass('card-body');
         taskTitleEl.addClass('card-title');
-        taskDateEL.addClass('card-subtitle');
-        taskDescEL.addClass('card-text');
-    //   let taskStatus = taskList[i].taskStatus;
+        taskDateEl.addClass('card-subtitle');
+        taskDescEl.addClass('card-text');
+        deleteEl.addClass('button #');
+        
+        //   let taskStatus = taskList[i].taskStatus;
         if (taskList[i].taskStatus === "overdue") {
             taskCard.addClass('overdue');
         }
@@ -161,7 +165,9 @@ function handleDeleteTask(event) {
     //grab id from delete button
     //compare id to all id values from array
     //delete from array when id matches
-
+    $("#delete").click(function () {
+        console.log("Funciona");
+    });
 }
 
 // Todo: create a function to handle dropping a task into a new status lane
