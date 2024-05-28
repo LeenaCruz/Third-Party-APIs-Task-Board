@@ -16,6 +16,11 @@ const taskDescription = $('#task-description');
 // Todo: create a function to generate a unique task id
 function generateTaskId() {
     //randomize y cuantos caracteres
+ const random = Math.floor(Math.random() * 100000000) + 10000000;
+
+localStorage.setItem('random',JSON.stringify(random));
+    // return random;
+    console.log(random);
 }
 
 // Todo: create a function to create a task card
@@ -81,7 +86,7 @@ function renderTaskList() {
         taskDateEl.addClass('card-subtitle');
         taskDescEl.addClass('card-text');
         deleteEl.addClass('button btn-danger');
-        
+
         //   let taskStatus = taskList[i].taskStatus;
         if (taskList[i].taskStatus === "overdue") {
             taskCard.addClass('overdue');
@@ -138,12 +143,18 @@ function handleAddTask(event) {
         taskStatus = "onTime";
     }
 
+// quiero obtener el numero random para asignarlo al objeto task
+ generateTaskId();
+  const id = JSON.parse(localStorage.getItem('random'));
+//   console.log(id);
+
     // event.preventDefault();
     const task = {
         taskName: taskTitle.val(),
         taskDate: taskDate.val(),
         taskDescription: taskDescription.val(),
         taskStatus: taskStatus,
+        id: id,
     };
 
     // taskList =  JSON.parse(localStorage.getItem("tasks")) || [];
@@ -165,11 +176,17 @@ function handleDeleteTask(event) {
     //grab id from delete button
     //compare id to all id values from array
     //delete from array when id matches
-    $("#delete").click(function () {
-        console.log("Funciona");
-    });
+//     $("#delete").click(function () {
+//         console.log("Funciona");
+//     });
+// }
+// const deleteEl = $(".button");
+// deleteEl.on('click', function () {
+//     const random = Math.floor(Math.random() * 100000000) + 10000000;
+//     console.log(random);
+//     console.log("Funciona")
+// });
 }
-
 // Todo: create a function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {
     // change status of cards
@@ -203,3 +220,4 @@ $(document).ready(function () {
 
 
 });
+
