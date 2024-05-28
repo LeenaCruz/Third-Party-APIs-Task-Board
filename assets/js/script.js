@@ -80,7 +80,7 @@ function renderTaskList() {
         taskTitleEl.addClass('card-title');
         taskDateEl.addClass('card-subtitle');
         taskDescEl.addClass('card-text');
-        deleteEl.addClass('button #');
+        deleteEl.addClass('button btn-danger');
         
         //   let taskStatus = taskList[i].taskStatus;
         if (taskList[i].taskStatus === "overdue") {
