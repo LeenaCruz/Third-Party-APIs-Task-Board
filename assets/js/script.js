@@ -78,6 +78,19 @@ function renderTaskList() {
         taskTitleEl.addClass('card-title');
         taskDateEL.addClass('card-subtitle');
         taskDescEL.addClass('card-text');
+    //   let taskStatus = taskList[i].taskStatus;
+        if (taskList[i].taskStatus === "overdue") {
+            taskCard.addClass('overdue');
+        }
+
+        else if (taskList[i].taskStatus === "deadline") {
+            taskCard.addClass('deadline');
+        }
+
+        else {
+            taskCard.addClass('onTime');
+        }
+
 
 
         $(function () {
@@ -115,7 +128,7 @@ function handleAddTask(event) {
         taskStatus = "overdue";
 
     }
-    else if (dueDate <3) {
+    else if (dueDate < 3) {
         taskStatus = "deadline";
     } else {
         taskStatus = "onTime";

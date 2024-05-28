@@ -22,5 +22,20 @@ body {
 }
 
 .draggable {
-  
+
+}
+
+.overdue
+{
+  background-color: red;
+}
+
+.deadline 
+{
+  background-color: yellow;
+}
+
+.onTime 
+{
+  background-color: white;
 }
