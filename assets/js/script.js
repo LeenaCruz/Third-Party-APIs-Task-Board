@@ -141,7 +141,7 @@ function handleAddTask(event) {
         taskStatus = "deadline";
     } else {
         taskStatus = "onTime";
-    }
+    } 
 
 // quiero obtener el numero random para asignarlo al objeto task
  generateTaskId();
@@ -191,7 +191,7 @@ function handleDeleteTask(event) {
 function handleDrop(event, ui) {
     // change status of cards
     //save
-
+//when task is done se pone class on Time
 }
 
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
