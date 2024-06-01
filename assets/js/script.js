@@ -1,6 +1,6 @@
 // Retrieve tasks and nextId from localStorage
-let taskList = JSON.parse(localStorage.getItem("tasks")) || [];
-let nextId = JSON.parse(localStorage.getItem("nextId"));
+let taskList = JSON.parse(localStorage.getItem("tasks"));
+// let nextId = JSON.parse(localStorage.getItem("nextId"));
 const taskForm = $('#task-form');
 const addTask = $('#save-task');
 const taskTitle = $("#task-title");
@@ -19,8 +19,8 @@ function generateTaskId() {
     //randomize y cuantos caracteres
     const random = Math.floor(Math.random() * 100000000) + 10000000;
 
-    localStorage.setItem('random', JSON.stringify(random));
-    // return random;
+    // localStorage.setItem('random', JSON.stringify(random));
+    return random;
     console.log(random);
 }
 
@@ -28,13 +28,14 @@ function generateTaskId() {
 function createTaskCard(task) {
 
     const taskCard = $("<div>")
-    .addClass('card draggable')
-    .attr('data-project-id', task.id);
+    .addClass('card project-card draggable')
+    .attr('data-task-id', task.id);
+    // console.log(task.id);
     const cardBody = $("<div>").addClass('card-body');
     const taskTitleEl = $("<h2>").text(task.taskName);
     const taskDateEL = $("<p>").addClass('card-text').text(task.taskDate);
     const taskDescEL = $("<p>").addClass('card-text').text(task.taskDescription);
-    const deleteEl = $("<button>").addClass('btn btn-danger delete').text('Delete').attr('data-project-id', task.id);
+    const deleteEl = $("<button>").addClass('btn btn-danger delete').text('Delete').attr('data-task-id', task.id);
 
 
     //     taskTitleEl.text(taskList.taskName);
@@ -63,11 +64,12 @@ function createTaskCard(task) {
     }
 
     //     todoEl.append(taskCard);
-    taskCard.append(cardBody);
-    taskCard.append(taskTitleEl);
-    taskCard.append(taskDateEL);
-    taskCard.append(taskDescEL);
-    taskCard.append(deleteEl);
+
+    cardBody.append(taskTitleEl);
+    cardBody.append(taskDateEL);
+    cardBody.append(taskDescEL);
+   cardBody.append(deleteEl);
+  taskCard.append(cardBody);
 
     return taskCard;
 
@@ -76,7 +78,7 @@ function createTaskCard(task) {
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
 
-    const tasks = taskList;
+    // const tasks = taskList;
 
     // let taskList = JSON.parse(localStorage.getItem("tasks"));
 
@@ -89,7 +91,7 @@ function renderTaskList() {
     const doneList = $('#done-cards');
     doneList.empty();
 
-    for (let task of tasks) {
+    for (let task of taskList) {
         if (task.taskStatus === 'to-do') {
             todoList.append(createTaskCard(task));
         } else if (task.taskStatus === 'in-progress') {
@@ -148,16 +150,16 @@ function renderTaskList() {
         opacity: 0.7,
         zIndex: 100,
         // ? This is the function that creates the clone of the card that is dragged. This is purely visual and does not affect the data.
-        helper: function (e) {
-            // ? Check if the target of the drag event is the card itself or a child element. If it is the card itself, clone it, otherwise find the parent card  that is draggable and clone that.
-            const original = $(e.target).hasClass('ui-draggable')
-                ? $(e.target)
-                : $(e.target).closest('.ui-draggable');
-            // ? Return the clone with the width set to the width of the original card. This is so the clone does not take up the entire width of the lane. This is to also fix a visual bug where the card shrinks as it's dragged to the right.
-            return original.clone().css({
-                width: original.outerWidth(),
-            });
-        },
+        // helper: function (e) {
+        //     // ? Check if the target of the drag event is the card itself or a child element. If it is the card itself, clone it, otherwise find the parent card  that is draggable and clone that.
+        //     const original = $(e.target).hasClass('ui-draggable')
+        //         ? $(e.target)
+        //         : $(e.target).closest('.ui-draggable');
+        //     // ? Return the clone with the width set to the width of the original card. This is so the clone does not take up the entire width of the lane. This is to also fix a visual bug where the card shrinks as it's dragged to the right.
+        //     return original.clone().css({
+        //         width: original.outerWidth(),
+        //     });
+        // },
     });
 }
 
@@ -168,7 +170,8 @@ function renderTaskList() {
 // Todo: create a function to handle adding a new task
 
 function handleAddTask(event) {
-    // event.preventDefault();
+
+// event.preventDefault();
 
     const today = dayjs();
     // Give credit to Xpert learning for dayJS object diff 
@@ -189,8 +192,8 @@ function handleAddTask(event) {
     }
 
     // quiero obtener el numero random para asignarlo al objeto task
-    generateTaskId();
-    const id = JSON.parse(localStorage.getItem('random'));
+
+    const id =  generateTaskId();
     //   console.log(id);
 
     // event.preventDefault();
@@ -203,7 +206,7 @@ function handleAddTask(event) {
         id: id,
     };
 
-    // taskList =  JSON.parse(localStorage.getItem("tasks")) || [];
+   taskList =  JSON.parse(localStorage.getItem("tasks")) || [];
 
     taskList.push(task);
 
@@ -241,24 +244,24 @@ function handleDeleteTask(event) {
     // });
 
 
-
-
-
-    const taskId = $(this).attr('data-project-id');
-    const tasks = JSON.parse(localStorage.getItem('tasks'));
+    const taskId = parseInt($(this).attr('data-task-id'));
+    console.log(typeof taskId + " " +  taskId);
 
     // if (!tasks) {
     //     tasks = [];
     // }
+    console.log(taskList);
 
-    tasks.forEach((task) => {
-
+    taskList.forEach((task) => {
+        console.log(taskList.indexOf(task));
         if (task.id === taskId) {
-            tasks.splice(tasks.indexof(task), 1);
+            taskList.splice(taskList.indexOf(task), 1);
+            console.log("Si entre")
         }
     });
 
-    console.log(tasks);
+    // taskList = taskList.map(t => t.id != taskId);
+    console.log(taskList);
 
     localStorage.setItem('tasks', JSON.stringify(taskList));
 
@@ -277,18 +280,22 @@ function handleDrop(event, ui) {
     // }
     //  return taskList;
 
-    const tasks = JSON.parse(localStorage.getItem('tasks'));
+    // const tasks = JSON.parse(localStorage.getItem('tasks'));
     const taskId = ui.draggable[0].dataset.taskId;
 
-    const newStatus = event.target.id;
-
-    for (let task of tasks) {
+console.log(typeof taskId + " " + taskId);
+   const newStatus = event.target.id; 
+   console.log( typeof newStatus + " " + newStatus);
+console.log(event.target);
+// 
+    for (let task of taskList) {
         if (task.id === taskId) {
             task.taskStatus = newStatus;
+         
         }
     }
 
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+    localStorage.setItem('tasks', JSON.stringify(taskList));
     renderTaskList();
 
 
@@ -341,6 +348,10 @@ $(document).ready(function () {
     });
 
 taskDisplayEl.on('click', '.delete', handleDeleteTask);
+
+// $(".delete").click(function () {
+//     handleDeleteTask();
+// })
 
 
 });
