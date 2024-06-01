@@ -281,6 +281,7 @@ function handleDrop(event, ui) {
     //  return taskList;
 
     // const tasks = JSON.parse(localStorage.getItem('tasks'));
+    // Takes taskID and make it a number to compare in the if statement below.
     const taskId = parseInt(ui.draggable[0].dataset.taskId);
 
 console.log(typeof taskId + " " + taskId);

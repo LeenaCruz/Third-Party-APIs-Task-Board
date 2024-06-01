@@ -12,6 +12,6 @@ Code line:
 
 ## Thanks 
 Hector C.  - Handle Delete Element, catching an error in type of variable comparison. 
-Alexsander
+Alexsander 
 Stephen 
         
