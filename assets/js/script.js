@@ -281,16 +281,18 @@ function handleDrop(event, ui) {
     //  return taskList;
 
     // const tasks = JSON.parse(localStorage.getItem('tasks'));
-    const taskId = ui.draggable[0].dataset.taskId;
+    const taskId = parseInt(ui.draggable[0].dataset.taskId);
 
 console.log(typeof taskId + " " + taskId);
    const newStatus = event.target.id; 
    console.log( typeof newStatus + " " + newStatus);
 console.log(event.target);
-// 
+
     for (let task of taskList) {
         if (task.id === taskId) {
             task.taskStatus = newStatus;
+            console.log ("Existo");
+            console.log(newStatus);
          
         }
     }
