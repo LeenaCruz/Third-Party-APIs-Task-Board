@@ -41,13 +41,14 @@ function createTaskCard(task) {
 }
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
+    const tasks = taskList || [];
     const todoList = $('#todo-cards');
     todoList.empty();
     const inProgressList = $('#in-progress-cards');
     inProgressList.empty();
     const doneList = $('#done-cards');
     doneList.empty();
-    for (let task of taskList) {
+    for (let task of tasks) {
         if (task.taskStatus === 'to-do') {
             todoList.append(createTaskCard(task));
         } else if (task.taskStatus === 'in-progress') {
