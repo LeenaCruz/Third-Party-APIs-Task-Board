@@ -11,7 +11,7 @@ how to use diff
 Code line:
 
 ## Thanks 
-Hector C.  - Handle Delete Element, catching an error in type of variable comparison. 
-Alexsander 
-Stephen 
-        
+
+Alexsander and Stephen for helping with JQuery draggable element and Handle Drop. 
+
+Hector - Handle Delete Element and Handle Drop Element,  catching an error in type of variable comparison.  Line 275 and 277, suggested using console log to check and parseInt.         
