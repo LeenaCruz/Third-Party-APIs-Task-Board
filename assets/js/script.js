@@ -8,7 +8,7 @@ const taskDescription = $('#task-description');
 const taskDisplayEl = $('#task-display');
 // Todo: create a function to generate a unique task id
 function generateTaskId() {
-    // Generates a random number between 0 an 1, multiplies it by 100000000 then adds 10000000 to generate a number between 10000000 and 10999999.
+// Generates a random number between 0 an 1, multiplies it by 100000000 then adds 10000000 to generate a number between 10000000 and 10999999.
     const random = Math.floor(Math.random() * 100000000) + 10000000;
     console.log(random);
     return random;
@@ -42,12 +42,14 @@ function createTaskCard(task) {
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
     const tasks = taskList || [];
+// Clears progress lanes.
     const todoList = $('#todo-cards');
     todoList.empty();
     const inProgressList = $('#in-progress-cards');
     inProgressList.empty();
     const doneList = $('#done-cards');
     doneList.empty();
+// Check status of each task and append it to the correct progress lane.
     for (let task of tasks) {
         if (task.taskStatus === 'to-do') {
             todoList.append(createTaskCard(task));
@@ -64,11 +66,12 @@ function renderTaskList() {
 }
 // Todo: create a function to handle adding a new task
 function handleAddTask() {
+//Compares today's date with due date, and assigns an urgency status to taskUrgency variable.
     const today = dayjs();
     const newDate = dayjs(taskDate.val());
     const dueDate = newDate.diff(today, 'day');
-    console.log(newDate.format('MM/DD/YYYY'));
-    console.log(dueDate);
+    // console.log(newDate.format('MM/DD/YYYY'));
+    // console.log(dueDate);
     let taskUrgency = "";
     if (dueDate < 0) {
         taskUrgency = "overdue";
@@ -78,10 +81,9 @@ function handleAddTask() {
     } else {
         taskUrgency = "onTime";
     }
-    // Calls for random number function and assign returned value to id variable.
+// Calls for random number function and assign returned value to id variable.
     const id = generateTaskId();
-    //   console.log(id);
-
+//Checks for empty inputs. 
     if (taskTitle.val() === "" ||
         taskDate.val() === "" ||
         taskDescription.val() === ""
@@ -125,7 +127,7 @@ function handleDeleteTask(event) {
 }
 // Todo: create a function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {
-    // Takes taskID and make it a number to compare in the if statement below.
+// Takes taskID and make it a number to compare in the if statement below.
     const taskId = parseInt(ui.draggable[0].dataset.taskId);
     // console.log(typeof taskId + " " + taskId); // Checked taskId typeof
     const newStatus = event.target.id;
@@ -140,7 +142,6 @@ function handleDrop(event, ui) {
     localStorage.setItem('tasks', JSON.stringify(taskList));
     renderTaskList();
 }
-
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function () {
     // DatePicker
@@ -150,11 +151,8 @@ $(document).ready(function () {
     // Add task button action
     $("#save-task").click(function () {
         handleAddTask();
-
     });
-
     renderTaskList();
-
     $('.droppable').droppable({
         // drop: function (event, ui) {
         //     $(this)
@@ -165,8 +163,5 @@ $(document).ready(function () {
         accept: '.draggable',
         drop: handleDrop,
     });
-
     taskDisplayEl.on('click', '.delete', handleDeleteTask);
-
 });
-
