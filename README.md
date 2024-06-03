@@ -43,6 +43,6 @@ Alexsander and Stephen for helping with JQuery draggable element and Handle Drop
 
 Hector - Help with Handle Delete Element and Handle Drop Element function, catching an error in type of variable comparison.  Line 275 and 277, suggested using console log to check and parseInt.         
 
-Xpert Learning Assistant 
+Xpert Learning Assistant -
 Help with a bug using dayJS 
 Hep how to use diff (code line 72).
