@@ -30,7 +30,7 @@ THEN the saved tasks persist
 ```
 
 ## Mockup 
-
+(./assets/images/Third-Party-APIs-Leena-Cruz.gif)
 
 ## Deployed App
 
