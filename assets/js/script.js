@@ -76,6 +76,7 @@ function handleAddTask() {
     if (dueDate < 0) {
         taskUrgency = "overdue";
     }
+//If task is due in 3 days, assigns deadline status.
     else if (dueDate < 3) {
         taskUrgency = "deadline";
     } else {
