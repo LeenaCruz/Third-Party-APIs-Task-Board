@@ -30,7 +30,7 @@ THEN the saved tasks persist
 ```
 
 ## Mockup 
-(./assets/images/Third-Party-APIs-Leena-Cruz.gif)
+![A user adds three tasks to the task board and changes the state of two of them then deletes one](assets/images/Third-Party-APIs-Leena-Cruz.gif)
 
 ## Deployed App
 
@@ -41,9 +41,8 @@ THEN the saved tasks persist
 
 Alexsander and Stephen for helping with JQuery draggable element and Handle Drop. 
 
-Hector - Handle Delete Element and Handle Drop Element,  catching an error in type of variable comparison.  Line 275 and 277, suggested using console log to check and parseInt.         
+Hector - Help with Handle Delete Element and Handle Drop Element function, catching an error in type of variable comparison.  Line 275 and 277, suggested using console log to check and parseInt.         
 
 Xpert Learning Assistant 
-
 Help with a bug using dayJS 
 Hep how to use diff (code line 72).
